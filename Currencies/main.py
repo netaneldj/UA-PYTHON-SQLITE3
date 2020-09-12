@@ -19,21 +19,30 @@ cursor.execute("INSERT INTO currency VALUES(1, 'Peso (ARG)', '$')")
 cursor.execute("INSERT INTO currency VALUES(2, 'Dólar', 'U$S')")
 
 # Revierto los cambios
-conn.rollback()
+#conn.rollback()
+
+# Guardo los cambios
+conn.commit()
 
 # Consulto todas las monedas
 query = "SELECT * FROM currency"
 
 # Busco el resultado
-currencies = cursor.execute(query).fetchall()
+currency = cursor.execute(query).fetchone()
+print(currency)
 
+print(cursor.fetchone())
+print(cursor.fetchone())
+
+# Busco el resultado
+currencies = cursor.execute(query).fetchall()
 print(currencies)
 
 # Cierro la conexion con la base de datos
 conn.close()
 
 # Crear función
-def md5sum(t):
+'''def md5sum(t):
     return hashlib.md5(t).hexdigest()
 
 
@@ -64,4 +73,4 @@ cursor.execute("insert into test(i) values (1)")
 cursor.execute("insert into test(i) values (2)")
 cursor.execute("select mysum(i) from test")
 print(cursor.fetchone()[0])
-conn.close()
+conn.close()'''
